@@ -7,7 +7,7 @@ export const profile = {
   roles: ["Fullstack Developer", "Marketing Strategist", "Brand Positioning"],
   tagline: {
     es: "Construyo productos web completos, desde el frontend a la infraestructura y la seguridad que los sostienen.",
-    en: "I build complete web products — from the frontend to the infrastructure and security that keep them running.",
+    en: "I build complete web products, from the frontend to the infrastructure and security that keep them running.",
   } satisfies Localized,
   email: "expinole12@gmail.com",
   linkedin: "https://linkedin.com/in/alex-espino",
@@ -51,7 +51,7 @@ export const experience: ExperienceItem[] = [
       en: "Web Developer & Digital Growth Strategist",
     },
     location: "San Nicolás de los Garza, Nuevo León",
-    period: { es: "Febrero 2026 — Presente", en: "February 2026 — Present" },
+    period: { es: "Febrero 2026 > Presente", en: "February 2026 > Present" },
     description: {
       es: [
         "Responsable del desarrollo desde cero y mantenimiento de los sitios web de 3 marcas del grupo (The Fire Spot, Juno Promotional, Got Fresh Breath), consolidando junto con Thunder LED Lights y Thunder Safety Solutions el portafolio web de 5 marcas de la empresa.",
@@ -77,7 +77,7 @@ export const experience: ExperienceItem[] = [
       en: "Founder & Fullstack Developer - Freelance",
     },
     location: "Monterrey, Nuevo León",
-    period: { es: "Febrero 2025 — Enero 2026", en: "February 2025 — January 2026" },
+    period: { es: "Febrero 2025 > Enero 2026", en: "February 2025 > January 2026" },
     description: {
       es: [
         "Desarrollo de sitios web utilizando Next.js, Astro, Supabase, React y TailwindCSS.",
@@ -99,7 +99,7 @@ export const experience: ExperienceItem[] = [
     company: "Epicor",
     role: { es: "Product Developer / QA Analyst", en: "Product Developer / QA Analyst" },
     location: "",
-    period: { es: "Mayo 2022 — Agosto 2023", en: "May 2022 — August 2023" },
+    period: { es: "Mayo 2022 > Agosto 2023", en: "May 2022 > August 2023" },
     description: {
       es: [
         "Desarrollo y mantenimiento de funcionalidades con Angular, SQL Server, Bootstrap, CSS/SCSS, HTML, JavaScript y TypeScript.",
@@ -121,7 +121,6 @@ export type Project = {
   url: string;
   stack: string[];
   summary: Localized;
-  // Ruta dentro de public/projects/. Déjalo vacío para usar el placeholder.
   image?: string;
 };
 
