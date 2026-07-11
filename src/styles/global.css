@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: infra --default, infra-light;
+}
+
+@plugin "daisyui/theme" {
+  name: "infra";
+  default: true;
+  prefersdark: false;
+  color-scheme: dark;
+
+  --color-base-100: #0e0c0a;
+  --color-base-200: #17140f;
+  --color-base-300: #211c15;
+  --color-base-content: #f3ede2;
+
+  --color-primary: #ff7a30;
+  --color-primary-content: #0e0c0a;
+  --color-secondary: #7fe0c9;
+  --color-secondary-content: #0e0c0a;
+  --color-accent: #c2632c;
+  --color-accent-content: #f3ede2;
+  --color-neutral: #211c15;
+  --color-neutral-content: #f3ede2;
+
+  --color-info: #7fe0c9;
+  --color-info-content: #0e0c0a;
+  --color-success: #7fe0c9;
+  --color-success-content: #0e0c0a;
+  --color-warning: #ff7a30;
+  --color-warning-content: #0e0c0a;
+  --color-error: #ff7a30;
+  --color-error-content: #0e0c0a;
+
+  --radius-selector: 0.15rem;
+  --radius-field: 0.15rem;
+  --radius-box: 0.15rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "infra-light";
+  default: false;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #f6f1e7;
+  --color-base-200: #ece4d4;
+  --color-base-300: #ddd2ba;
+  --color-base-content: #1c1712;
+
+  --color-primary: #c2530f;
+  --color-primary-content: #fff9f2;
+  --color-secondary: #157a64;
+  --color-secondary-content: #f6f1e7;
+  --color-accent: #9c4310;
+  --color-accent-content: #f6f1e7;
+  --color-neutral: #ddd2ba;
+  --color-neutral-content: #1c1712;
+
+  --color-info: #157a64;
+  --color-info-content: #f6f1e7;
+  --color-success: #157a64;
+  --color-success-content: #f6f1e7;
+  --color-warning: #c2530f;
+  --color-warning-content: #fff9f2;
+  --color-error: #c2530f;
+  --color-error-content: #fff9f2;
+
+  --radius-selector: 0.15rem;
+  --radius-field: 0.15rem;
+  --radius-box: 0.15rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@font-face {
+  font-family: "Big Shoulders Display";
+  src: url("/fonts/big-shoulders-display-800.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plex Sans";
+  src: url("/fonts/plex-sans-var.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plex Mono";
+  src: url("/fonts/plex-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plex Mono";
+  src: url("/fonts/plex-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-body: "Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --line: rgba(255, 246, 230, 0.1);
+  --line-strong: rgba(255, 246, 230, 0.2);
+  --paper-dim: #ada091;
+  --paper-faint: #6f6558;
+  --grid-line: rgba(255, 246, 230, 0.03);
+  --grid-glow: rgba(255, 122, 48, 0.07);
+  --statusbar-bg: rgba(14, 12, 10, 0.9);
+}
+
+:root[data-theme="infra-light"] {
+  --line: rgba(28, 23, 18, 0.12);
+  --line-strong: rgba(28, 23, 18, 0.24);
+  --paper-dim: #6b5f4e;
+  --paper-faint: #948671;
+  --grid-line: rgba(28, 23, 18, 0.05);
+  --grid-glow: rgba(194, 83, 15, 0.06);
+  --statusbar-bg: rgba(246, 241, 231, 0.88);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  padding-top: 2.1rem;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, var(--grid-glow), transparent 60%),
+    repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 88px),
+    var(--color-base-100);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+.font-mono, code {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-content);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- ghost heading ---------- */
+
+.ghost-wrap {
+  position: relative;
+  overflow: hidden;
+  padding-top: 1.6rem;
+}
+.ghost-text {
+  position: absolute;
+  top: -0.3em;
+  left: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2.6rem + 7vw, 8rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+  white-space: nowrap;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+.ghost-fore {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- bento ---------- */
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.bento .cell {
+  background: var(--color-base-200);
+  padding: 1.4rem 1.1rem;
+}
+.bento .num {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.5rem + 2vw, 2.8rem);
+  color: var(--color-primary);
+  line-height: 1;
+}
+.bento .desc {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--paper-dim);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- status bar ---------- */
+
+.statusbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: clamp(0.7rem, 3vw, 1.6rem);
+  align-items: center;
+  padding: 0.5rem clamp(1rem, 3vw, 1.6rem);
+  background: var(--statusbar-bg);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--paper-dim);
+  z-index: 40;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.statusbar b {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+.statusbar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  display: inline-block;
+  margin-right: 0.4rem;
+  box-shadow: 0 0 6px var(--color-secondary);
+}
+.statusbar .sep {
+  color: var(--line-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
