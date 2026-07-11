@@ -3,7 +3,10 @@
 ### Tech Stack
 
 - Astro
-- // pending css framework
+- Daisy UI
+- Custom animations
+- ThreeJS
+- React
 
 ### Hosting
 
