@@ -179,6 +179,23 @@ h1, h2, h3, .font-display {
   transform: none;
 }
 
+/* ---------- timeline: single-column on mobile ---------- */
+/* Below md, collapse whichever side (start/end) is unused per row so the
+   populated box gets the full row width instead of ~half of it. */
+
+@media (max-width: 767px) {
+  #experience .timeline-vertical > li:has(.timeline-start) {
+    --timeline-col-end: 0px;
+  }
+  #experience .timeline-vertical > li:has(.timeline-end) {
+    --timeline-col-start: 0px;
+  }
+  #experience .timeline-vertical .timeline-start,
+  #experience .timeline-vertical .timeline-end {
+    place-self: center stretch;
+  }
+}
+
 /* ---------- ghost heading ---------- */
 
 .ghost-wrap {
