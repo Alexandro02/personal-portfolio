@@ -1,0 +1,82 @@
+---
+---
+
+<div class="statusbar" aria-hidden="true">
+  <span><span class="dot"></span>LIVE</span>
+  <span class="sep">/</span>
+  <span>SCROLL <b class="tabular" id="sbScroll">000</b>%</span>
+  <span class="sep">/</span>
+  <span id="sbSection">00 · INICIO</span>
+  <span class="sep">/</span>
+  <span data-i18n-es="ALEXANDRO ESPINO — DEV / INFRA / SEGURIDAD" data-i18n-en="ALEXANDRO ESPINO — DEV / INFRA / SECURITY">ALEXANDRO ESPINO — DEV / INFRA / SEGURIDAD</span>
+  <span class="sep">/</span>
+  <span class="tabular" id="sbClock">00:00:00</span>
+</div>
+
+<script>
+  const SECTIONS = [
+    { id: "hero", es: "INICIO", en: "HOME" },
+    { id: "projects", es: "PROYECTOS", en: "PROJECTS" },
+    { id: "about", es: "SOBRE MÍ", en: "ABOUT" },
+    { id: "skills", es: "SKILLS", en: "SKILLS" },
+    { id: "experience", es: "EXPERIENCIA", en: "EXPERIENCE" },
+    { id: "contact", es: "CONTACTO", en: "CONTACT" },
+  ];
+
+  function pad(n: number) {
+    return String(n).padStart(2, "0");
+  }
+
+  function tickClock() {
+    const d = new Date();
+    const el = document.getElementById("sbClock");
+    if (el) el.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  const sbScroll = document.getElementById("sbScroll");
+  function onScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    let pct = max > 0 ? Math.round((scrollTop / max) * 100) : 0;
+    pct = Math.max(0, Math.min(100, pct));
+    if (sbScroll) sbScroll.textContent = String(pct).padStart(3, "0");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const sbSection = document.getElementById("sbSection");
+  let activeIndex = 0;
+
+  function renderSection() {
+    if (!sbSection) return;
+    const lang = localStorage.getItem("lang") || "es";
+    const entry = SECTIONS[activeIndex];
+    sbSection.textContent = `${pad(activeIndex)} · ${lang === "en" ? entry.en : entry.es}`;
+  }
+  renderSection();
+
+  window.addEventListener("langchange", renderSection);
+
+  if ("IntersectionObserver" in window && sbSection) {
+    const targets = SECTIONS.map((s, i) => ({ ...s, el: document.getElementById(s.id), index: i })).filter(
+      (s) => s.el
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const match = targets.find((t) => t.el === entry.target);
+            if (match) {
+              activeIndex = match.index;
+              renderSection();
+            }
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    targets.forEach((t) => observer.observe(t.el as HTMLElement));
+  }
+</script>

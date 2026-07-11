@@ -1,17 +1,43 @@
 ---
-
+import DockNavAstroComponent from "@components/DockNav.astro"
+import StatusBar from "@components/StatusBar.astro"
+import MotionSystem from "@components/MotionSystem.astro"
+import Hero from "@components/Hero.astro"
+import Projects from "@components/Projects.astro"
+import About from "@components/About.astro"
+import Skills from "@components/Skills.astro"
+import Experience from "@components/Experience.astro"
+import Contact from "@components/Contact.astro"
+import "../styles/global.css"
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Alexandro Espino - Desarrollador Frontend</title>
+		<script is:inline>
+			(function () {
+				try {
+					var stored = localStorage.getItem("theme");
+					var theme = stored || (window.matchMedia("(prefers-color-scheme: light)").matches ? "infra-light" : "infra");
+					document.documentElement.setAttribute("data-theme", theme);
+				} catch (e) {}
+			})();
+		</script>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="pb-24">
+		<StatusBar />
+		<Hero />
+		<Projects />
+		<About />
+		<Skills />
+		<Experience />
+		<Contact />
+		<DockNavAstroComponent />
+		<MotionSystem />
 	</body>
 </html>

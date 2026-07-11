@@ -1,0 +1,16 @@
+---
+interface Props {
+  value: number;
+  labelEs: string;
+  labelEn: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+const { value, labelEs, labelEn, prefix = "", suffix = "" } = Astro.props;
+---
+
+<div class="cell">
+  <div class="num tabular" data-count-to={value} data-prefix={prefix} data-suffix={suffix}>0</div>
+  <div class="desc" data-i18n-es={labelEs} data-i18n-en={labelEn}>{labelEs}</div>
+</div>

@@ -1,0 +1,12 @@
+---
+import { skills } from "@data/site";
+---
+
+<section id="skills" class="py-16 px-6 max-w-3xl mx-auto text-center reveal">
+  <h2 class="text-3xl mb-8">Skills</h2>
+  <div class="flex flex-wrap gap-3 justify-center">
+    {skills.map((skill) => (
+      <span class="font-mono text-xs uppercase tracking-wide border border-primary/40 text-primary px-3 py-2">{skill}</span>
+    ))}
+  </div>
+</section>

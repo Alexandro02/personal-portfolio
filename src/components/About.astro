@@ -1,0 +1,25 @@
+---
+const paragraphs = [
+  {
+    es: "Empecé en Epicor como QA / Product Developer, viendo de cerca cómo se construye y se rompe software a escala empresarial. Ese fue mi primer contacto real con procesos de desarrollo serios, y de ahí salté a Global Supplier MTY.",
+    en: "I started at Epicor as a QA / Product Developer, seeing up close how enterprise-scale software gets built — and broken. That was my first real exposure to serious development processes, and from there I moved to Global Supplier MTY.",
+  },
+  {
+    es: "Ahí mi rol creció más allá de solo escribir código: hoy soy responsable del desarrollo, la seguridad corporativa y la operación digital de varias marcas del grupo, en el camino de analista IT a IT Manager. Eso me obligó a pensar en producto, infraestructura y seguridad como una sola pieza, no como capas separadas.",
+    en: "There my role grew beyond just writing code: today I'm responsible for development, corporate security, and the digital operation of several brands within the group, on the path from IT analyst to IT Manager. That forced me to think about product, infrastructure, and security as a single piece, not separate layers.",
+  },
+  {
+    es: "En paralelo fundé dos proyectos propios, Cardleon y ThornSolutions — hoy inactivos, pero fueron donde aprendí a tomar decisiones de negocio y técnicas sin nadie más a quien preguntarle. No los escondo: fueron parte del aprendizaje.",
+    en: "In parallel I founded two of my own projects, Cardleon and ThornSolutions — inactive today, but where I learned to make business and technical decisions with no one else to ask. I don't hide them: they were part of the learning.",
+  },
+];
+---
+
+<section id="about" class="py-24 px-6 max-w-3xl mx-auto reveal">
+  <h2 class="text-3xl font-bold mb-6" data-i18n-es="Sobre mí" data-i18n-en="About me">Sobre mí</h2>
+  <div class="space-y-4 opacity-80 leading-relaxed">
+    {paragraphs.map((p) => (
+      <p data-i18n-es={p.es} data-i18n-en={p.en}>{p.es}</p>
+    ))}
+  </div>
+</section>

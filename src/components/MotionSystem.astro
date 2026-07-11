@@ -1,0 +1,68 @@
+---
+---
+
+<script>
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const revealEls = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+  if (reduceMotion) {
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+  } else if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  function easeOutCubic(t: number) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCount(el: HTMLElement) {
+    const to = parseFloat(el.getAttribute("data-count-to") || "0");
+    const prefix = el.getAttribute("data-prefix") || "";
+    const suffix = el.getAttribute("data-suffix") || "";
+    const duration = 1100;
+    if (reduceMotion) {
+      el.textContent = `${prefix}${to}${suffix}`;
+      return;
+    }
+    let start: number | null = null;
+    function step(ts: number) {
+      if (start === null) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const val = Math.round(easeOutCubic(progress) * to);
+      el.textContent = `${prefix}${val}${suffix}`;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const counters = Array.from(document.querySelectorAll<HTMLElement>("[data-count-to]"));
+  if ("IntersectionObserver" in window) {
+    const countObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target as HTMLElement);
+            countObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    counters.forEach((el) => countObserver.observe(el));
+  } else {
+    counters.forEach((el) => animateCount(el));
+  }
+</script>

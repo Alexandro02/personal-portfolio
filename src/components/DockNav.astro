@@ -1,0 +1,94 @@
+---
+
+---
+
+<div class="dock dock-xl rounded-none">
+  <a href="#hero">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="1 11 12 2 23 11" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><path d="m5,13v7c0,1.105.895,2,2,2h10c1.105,0,2-.895,2-2v-7" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path><line x1="12" y1="22" x2="12" y2="18" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></line></g></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-i18n-es="Inicio" data-i18n-en="Home">Inicio</span>
+  </a>
+
+  <a href="#projects">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><polyline points="3 14 9 14 9 17 15 17 15 14 21 14" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></rect></g></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-i18n-es="Proyectos" data-i18n-en="Projects">Proyectos</span>
+  </a>
+
+  <a href="#about">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" stroke-linejoin="miter" stroke-linecap="butt"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></circle><path d="m22,13.25v-2.5l-2.318-.966c-.167-.581-.395-1.135-.682-1.654l.954-2.318-1.768-1.768-2.318.954c-.518-.287-1.073-.515-1.654-.682l-.966-2.318h-2.5l-.966,2.318c-.581.167-1.135.395-1.654.682l-2.318-.954-1.768,1.768.954,2.318c-.287.518-.515,1.073-.682,1.654l-2.318.966v2.5l2.318.966c.167.581.395,1.135.682,1.654l-.954,2.318,1.768,1.768,2.318-.954c.518.287,1.073.515,1.654.682l.966,2.318h2.5l.966-2.318c.581-.167,1.135-.395,1.654-.682l2.318.954,1.768-1.768-.954-2.318c.287-.518.515-1.073.682-1.654l2.318-.966Z" fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"></path></g></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-i18n-es="Sobre mí" data-i18n-en="About">Sobre mí</span>
+  </a>
+
+  <a href="#contact">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="2 6 12 13 22 6"></polyline></g></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-i18n-es="Contacto" data-i18n-en="Contact">Contacto</span>
+  </a>
+
+  <button type="button" data-lang-toggle aria-label="Cambiar idioma / Switch language">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-lang-label>English</span>
+  </button>
+
+  <button type="button" data-theme-toggle aria-label="Cambiar tema / Toggle theme">
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line></svg>
+    <span class="dock-label font-mono uppercase tracking-wider" data-theme-label>Claro</span>
+  </button>
+</div>
+
+<script>
+  const LANG_KEY = "lang";
+  const THEME_KEY = "theme";
+  const THEME_LABELS: Record<string, { dark: string; light: string }> = {
+    es: { dark: "Oscuro", light: "Claro" },
+    en: { dark: "Dark", light: "Light" },
+  };
+
+  function currentLang(): string {
+    return localStorage.getItem(LANG_KEY) || "es";
+  }
+
+  function updateThemeLabel() {
+    const label = document.querySelector<HTMLElement>("[data-theme-label]");
+    if (!label) return;
+    const theme = document.documentElement.getAttribute("data-theme") === "infra-light" ? "light" : "dark";
+    // Label shows the theme clicking will switch TO (same convention as the language toggle).
+    const target = theme === "light" ? "dark" : "light";
+    label.textContent = THEME_LABELS[currentLang()][target];
+  }
+
+  function applyLang(lang: string) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll<HTMLElement>("[data-i18n-es]").forEach((el) => {
+      const text = lang === "en" ? el.dataset.i18nEn : el.dataset.i18nEs;
+      if (text !== undefined) el.textContent = text;
+    });
+    const label = document.querySelector<HTMLElement>("[data-lang-label]");
+    if (label) label.textContent = lang === "es" ? "English" : "Español";
+    updateThemeLabel();
+    window.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
+  }
+
+  const storedLang = localStorage.getItem(LANG_KEY) || "es";
+  applyLang(storedLang);
+
+  document.querySelector("[data-lang-toggle]")?.addEventListener("click", () => {
+    const current = localStorage.getItem(LANG_KEY) || "es";
+    const next = current === "es" ? "en" : "es";
+    localStorage.setItem(LANG_KEY, next);
+    applyLang(next);
+  });
+
+  function applyTheme(theme: string) {
+    document.documentElement.setAttribute("data-theme", theme);
+    updateThemeLabel();
+  }
+
+  const storedTheme = document.documentElement.getAttribute("data-theme") || "infra";
+  applyTheme(storedTheme);
+
+  document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") === "infra-light" ? "infra-light" : "infra";
+    const next = current === "infra" ? "infra-light" : "infra";
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  });
+</script>

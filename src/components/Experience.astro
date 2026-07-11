@@ -1,0 +1,48 @@
+---
+import BentoStat from "@components/BentoStat.astro";
+import { experience } from "@data/site";
+---
+
+<section id="experience" class="py-16 px-6 max-w-6xl mx-auto reveal">
+  <h2 class="text-3xl mb-10 text-center" data-i18n-es="Experiencia" data-i18n-en="Experience">Experiencia</h2>
+  <ul class="timeline timeline-vertical">
+    {experience.map((item, i) => {
+      const box = (
+        <div class="timeline-box w-full rounded-none border border-base-300">
+          <p class="font-display text-lg" data-i18n-es={item.role.es} data-i18n-en={item.role.en}>{item.role.es}</p>
+          <p class="text-sm text-primary font-mono">
+            {item.company}
+            {item.location ? ` · ${item.location}` : ""}
+          </p>
+          <p class="text-xs opacity-60 mb-3 font-mono" data-i18n-es={item.period.es} data-i18n-en={item.period.en}>{item.period.es}</p>
+          {item.stats && (
+            <div class="bento mb-3">
+              {item.stats.map((stat) => (
+                <BentoStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} labelEs={stat.labelEs} labelEn={stat.labelEn} />
+              ))}
+            </div>
+          )}
+          <ul class="list-disc list-inside space-y-1">
+            {item.description.es.map((line, li) => (
+              <li class="text-sm opacity-70" data-i18n-es={line} data-i18n-en={item.description.en[li]}>{line}</li>
+            ))}
+          </ul>
+        </div>
+      );
+      const isStart = i % 2 === 0;
+      return (
+        <li>
+          {i > 0 && <hr />}
+          {isStart && <div class="timeline-start">{box}</div>}
+          <div class="timeline-middle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-primary">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          {!isStart && <div class="timeline-end">{box}</div>}
+          {i < experience.length - 1 && <hr />}
+        </li>
+      );
+    })}
+  </ul>
+</section>

@@ -1,0 +1,56 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import type { Project } from "@data/site";
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+
+const hasImage = Boolean(
+  project.image && fs.existsSync(path.join(process.cwd(), "public", project.image))
+);
+const num = String(index + 1).padStart(2, "0");
+---
+
+<div class="card bg-base-200 border border-base-300 rounded-none group">
+  {hasImage ? (
+    <figure class="h-40 overflow-hidden">
+      <img
+        src={project.image}
+        alt={`${project.name} — screenshot`}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </figure>
+  ) : (
+    <figure class="h-40 bg-gradient-to-br from-primary/15 to-secondary/10 relative">
+      <span class="absolute right-3 bottom-2 font-mono text-xs text-primary/70">{num}</span>
+      <span class="text-2xl font-display uppercase opacity-30">{project.name}</span>
+    </figure>
+  )}
+  <div class="card-body">
+    <div class="flex items-baseline gap-3">
+      <span class="font-mono text-xs text-primary">{num}</span>
+      <h3 class="card-title font-display text-xl">{project.name}</h3>
+    </div>
+    <p class="text-sm opacity-70" data-i18n-es={project.summary.es} data-i18n-en={project.summary.en}>{project.summary.es}</p>
+    <div class="flex flex-wrap gap-2 mt-2">
+      {project.stack.map((tech) => (
+        <span class="font-mono text-[0.65rem] uppercase tracking-wide border border-base-300 px-2 py-1 opacity-70">{tech}</span>
+      ))}
+    </div>
+    <div class="card-actions justify-end mt-4">
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-sm btn-primary rounded-none font-mono uppercase tracking-wide"
+      >
+        <span data-i18n-es="Visitar sitio" data-i18n-en="Visit site">Visitar sitio</span>&nbsp;↗
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+---
+import ProjectCard from "@components/ProjectCard.astro";
+import { projects } from "@data/site";
+---
+
+<section id="projects" class="py-24 px-6 max-w-6xl mx-auto reveal">
+  <div class="ghost-wrap">
+    <div class="ghost-text" aria-hidden="true">BUILD</div>
+    <h2 class="ghost-fore text-3xl md:text-4xl" data-i18n-es="Proyectos destacados" data-i18n-en="Featured projects">Proyectos destacados</h2>
+  </div>
+  <p class="opacity-70 mb-10 font-mono text-sm" data-i18n-es="Marcas que diseño, desarrollo y opero de punta a punta." data-i18n-en="Brands I design, build, and operate end-to-end.">Marcas que diseño, desarrollo y opero de punta a punta.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {projects.map((project, index) => (
+      <ProjectCard project={project} index={index} />
+    ))}
+  </div>
+</section>
