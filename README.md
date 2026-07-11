@@ -8,7 +8,3 @@
 ### Hosting
 
 - Vercel
-
-### Email service
-
-- Resend
