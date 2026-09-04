@@ -1,6 +1,5 @@
 ---
-import DockNavAstroComponent from "@components/DockNav.astro"
-import StatusBar from "@components/StatusBar.astro"
+import Nav from "@components/Nav.astro"
 import MotionSystem from "@components/MotionSystem.astro"
 import Hero from "@components/Hero.astro"
 import Projects from "@components/Projects.astro"
@@ -32,15 +31,14 @@ import "../styles/global.css"
 			})();
 		</script>
 	</head>
-	<body class="pb-24">
-		<StatusBar />
+	<body>
+		<Nav />
 		<Hero />
 		<Projects />
 		<About />
 		<Skills />
 		<Experience />
 		<Contact />
-		<DockNavAstroComponent />
 		<MotionSystem />
 	</body>
 </html>
