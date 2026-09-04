@@ -8,24 +8,43 @@ const links = [
 ---
 
 <nav class="site-nav" aria-label="Primary">
-  <div class="site-nav-pill">
-    {links.map((link) => (
-      <a href={link.href} data-nav-link data-nav-id={link.id} class="site-nav-link">
-        <span class="site-nav-dot" aria-hidden="true"></span><span data-i18n-es={link.es} data-i18n-en={link.en}>{link.es}</span>
-      </a>
-    ))}
+  <button
+    type="button"
+    data-nav-toggle
+    class="site-nav-toggle"
+    aria-expanded="false"
+    aria-controls="site-nav-pill"
+    aria-label="Abrir menú / Open menu"
+  >
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <div class="site-nav-pill" id="site-nav-pill">
+    <ul class="site-nav-links" role="list">
+      {links.map((link, i) => (
+        <li style={`--i:${i}`}>
+          <a href={link.href} data-nav-link data-nav-id={link.id} class="site-nav-link">
+            <span class="site-nav-dot" aria-hidden="true"></span><span data-i18n-es={link.es} data-i18n-en={link.en}>{link.es}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
 
     <span class="site-nav-sep" aria-hidden="true"></span>
 
-    <button type="button" data-lang-toggle class="site-nav-icon-btn" aria-label="Cambiar idioma / Switch language">
-      <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-      <span class="sr-only" data-lang-label>English</span>
-    </button>
+    <div class="site-nav-controls">
+      <button type="button" data-lang-toggle class="site-nav-icon-btn" style={`--i:${links.length}`} aria-label="Cambiar idioma / Switch language">
+        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span class="sr-only" data-lang-label>English</span>
+      </button>
 
-    <button type="button" data-theme-toggle class="site-nav-icon-btn" aria-label="Cambiar tema / Toggle theme">
-      <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line></svg>
-      <span class="sr-only" data-theme-label>Claro</span>
-    </button>
+      <button type="button" data-theme-toggle class="site-nav-icon-btn" style={`--i:${links.length + 1}`} aria-label="Cambiar tema / Toggle theme">
+        <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"></line><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"></line></svg>
+        <span class="sr-only" data-theme-label>Claro</span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -33,10 +52,45 @@ const links = [
   .site-nav {
     position: fixed;
     top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: fit-content;
+    margin-inline: auto;
     z-index: 50;
-    max-width: calc(100vw - 1.5rem);
+  }
+
+  /* ---------- hamburger toggle (mobile only) ---------- */
+
+  .site-nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--color-base-200);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+  }
+  .site-nav-toggle .bar {
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-base-content);
+    transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
+  }
+  .site-nav.is-open .site-nav-toggle .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .site-nav.is-open .site-nav-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .site-nav.is-open .site-nav-toggle .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   .site-nav-pill {
@@ -54,6 +108,24 @@ const links = [
   }
   .site-nav-pill::-webkit-scrollbar {
     display: none;
+  }
+
+  .site-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav-links li {
+    display: flex;
+  }
+
+  .site-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
   }
 
   .site-nav-link {
@@ -114,6 +186,101 @@ const links = [
     color: var(--color-base-content);
     background: var(--color-base-300);
   }
+
+  /* ---------- mobile: links float in, no card/box ---------- */
+
+  @media (max-width: 767px) {
+    .site-nav {
+      width: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .site-nav-toggle {
+      display: flex;
+    }
+
+    .site-nav-pill {
+      position: absolute;
+      top: calc(100% + 0.8rem);
+      right: 0;
+      left: auto;
+      transform: none;
+      background: linear-gradient(
+        to left,
+        color-mix(in srgb, var(--color-base-100) 88%, transparent) 0%,
+        color-mix(in srgb, var(--color-base-100) 60%, transparent) 55%,
+        transparent 100%
+      );
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: none;
+      box-shadow: none;
+      border-radius: 1.25rem;
+      flex-direction: column;
+      align-items: flex-end;
+      width: max-content;
+      max-width: 100%;
+      max-height: 0;
+      padding: 0.9rem 1rem 0.9rem 2.5rem;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition:
+        max-height 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+        opacity 0.25s ease;
+    }
+    .site-nav.is-open .site-nav-pill {
+      max-height: 26rem;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-nav-links {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.15rem;
+    }
+    .site-nav-link {
+      font-size: 0.85rem;
+    }
+
+    .site-nav-sep {
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      margin: 0.5rem 0;
+    }
+
+    .site-nav-controls {
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    /* cascade: each item slides in from the right with a staggered delay */
+    .site-nav-links li,
+    .site-nav-controls .site-nav-icon-btn {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+      transition-delay: 0s;
+    }
+    .site-nav.is-open .site-nav-links li,
+    .site-nav.is-open .site-nav-controls .site-nav-icon-btn {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(var(--i, 0) * 45ms);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-nav-toggle .bar,
+    .site-nav-pill,
+    .site-nav-links li,
+    .site-nav-controls .site-nav-icon-btn {
+      transition: none !important;
+    }
+  }
 </style>
 
 <script>
@@ -138,6 +305,7 @@ const links = [
 
   const pill = document.querySelector<HTMLElement>(".site-nav-pill");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
   const TEXT_FADE_MS = 150;
 
   function applyLang(lang: string, animate: boolean = true) {
@@ -155,7 +323,9 @@ const links = [
       window.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
     }
 
-    if (!animate || prefersReducedMotion || !els.length) {
+    // The pill width-morph animation only makes sense for the horizontal
+    // desktop pill; on mobile the panel is a fixed-width dropdown.
+    if (!animate || prefersReducedMotion || !els.length || !isDesktop()) {
       commitText();
       return;
     }
@@ -223,9 +393,42 @@ const links = [
     applyTheme(next);
   });
 
+  // ---------- mobile hamburger menu ----------
+  const siteNav = document.querySelector<HTMLElement>(".site-nav");
+  const navToggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+
+  function closeMobileNav() {
+    siteNav?.classList.remove("is-open");
+    navToggle?.setAttribute("aria-expanded", "false");
+  }
+  function openMobileNav() {
+    siteNav?.classList.add("is-open");
+    navToggle?.setAttribute("aria-expanded", "true");
+  }
+
+  navToggle?.addEventListener("click", () => {
+    if (siteNav?.classList.contains("is-open")) closeMobileNav();
+    else openMobileNav();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!siteNav || !siteNav.classList.contains("is-open")) return;
+    if (!siteNav.contains(e.target as Node)) closeMobileNav();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMobileNav();
+  });
+
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) closeMobileNav();
+  });
+
   // ---------- scrollspy: resalta el link de la sección visible ----------
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));
   const linkById = new Map(navLinks.map((el) => [el.dataset.navId, el]));
+
+  navLinks.forEach((link) => link.addEventListener("click", () => closeMobileNav()));
 
   function setActive(id: string | undefined) {
     if (!id) return;

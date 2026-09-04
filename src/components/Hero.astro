@@ -7,19 +7,19 @@ const roles = profile.roles;
 
 <section id="hero" class="hero min-h-screen">
   <div class="hero-content max-w-6xl w-full flex-col-reverse lg:flex-row gap-10">
-    <div class="text-center lg:text-left flex-1">
+    <div class="text-center lg:text-left flex-1 w-full min-w-0">
       <p class="text-primary font-mono text-xs tracking-widest uppercase mb-3" data-i18n-es="Hola, soy" data-i18n-en="Hi, I'm">Hola, soy</p>
-      <h1 class="text-6xl md:text-7xl leading-[0.92]">{profile.name}</h1>
-      <h2 class="text-xl mt-4 h-7 font-mono text-primary">
+      <h1 class="text-3xl min-[375px]:text-4xl sm:text-6xl md:text-7xl leading-[0.95] sm:leading-[0.92]">{profile.name}</h1>
+      <h2 class="text-lg sm:text-xl mt-4 h-7 font-mono text-primary">
         <span>&gt;</span> <span id="role-text">{profile.roles[0]}</span><span class="opacity-60">_</span>
       </h2>
       <p class="py-6 max-w-xl opacity-70" data-i18n-es={profile.tagline.es} data-i18n-en={profile.tagline.en}>{profile.tagline.es}</p>
-      <div class="flex gap-3 justify-center lg:justify-start">
+      <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
         <a href="#projects" class="btn btn-primary rounded-none" data-i18n-es="Ver proyectos" data-i18n-en="View projects">Ver proyectos</a>
         <a href="#contact" class="btn btn-outline rounded-none" data-i18n-es="Contacto" data-i18n-en="Contact">Contacto</a>
       </div>
     </div>
-    <div class="flex-1 w-full h-80 lg:h-105">
+    <div class="flex-1 w-full min-w-0 h-56 sm:h-72 lg:h-105">
       <HeroScene client:visible />
     </div>
   </div>

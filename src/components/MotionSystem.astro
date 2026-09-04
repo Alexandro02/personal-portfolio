@@ -17,7 +17,10 @@
           }
         });
       },
-      { threshold: 0.15 }
+      // Positive bottom margin grows the observed area past the actual
+      // viewport edge, so sections start revealing slightly before they
+      // scroll into view instead of only after they're already on screen.
+      { threshold: 0, rootMargin: "0px 0px 200px 0px" }
     );
     revealEls.forEach((el) => revealObserver.observe(el));
   } else {
