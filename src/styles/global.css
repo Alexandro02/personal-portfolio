@@ -120,7 +120,6 @@
   --paper-faint: #6f6558;
   --grid-line: rgba(255, 246, 230, 0.03);
   --grid-glow: rgba(255, 122, 48, 0.07);
-  --statusbar-bg: rgba(14, 12, 10, 0.9);
 }
 
 :root[data-theme="infra-light"] {
@@ -130,7 +129,6 @@
   --paper-faint: #948671;
   --grid-line: rgba(28, 23, 18, 0.05);
   --grid-glow: rgba(194, 83, 15, 0.06);
-  --statusbar-bg: rgba(246, 241, 231, 0.88);
 }
 
 html {
@@ -139,7 +137,6 @@ html {
 
 body {
   font-family: var(--font-body);
-  padding-top: 2.1rem;
   background:
     radial-gradient(1200px 600px at 12% -10%, var(--grid-glow), transparent 60%),
     repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 88px),
@@ -165,6 +162,12 @@ h1, h2, h3, .font-display {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* ---------- i18n text swap ---------- */
+
+[data-i18n-es] {
+  transition: opacity 0.15s ease;
 }
 
 /* ---------- scroll reveal ---------- */
@@ -256,49 +259,13 @@ h1, h2, h3, .font-display {
   }
 }
 
-/* ---------- status bar ---------- */
-
-.statusbar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  display: flex;
-  gap: clamp(0.7rem, 3vw, 1.6rem);
-  align-items: center;
-  padding: 0.5rem clamp(1rem, 3vw, 1.6rem);
-  background: var(--statusbar-bg);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line-strong);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.03em;
-  color: var(--paper-dim);
-  z-index: 40;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.statusbar b {
-  color: var(--color-primary);
-  font-weight: 500;
-}
-.statusbar .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-secondary);
-  display: inline-block;
-  margin-right: 0.4rem;
-  box-shadow: 0 0 6px var(--color-secondary);
-}
-.statusbar .sep {
-  color: var(--line-strong);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     transition: none;
     opacity: 1;
     transform: none;
+  }
+  [data-i18n-es] {
+    transition: none;
   }
 }
