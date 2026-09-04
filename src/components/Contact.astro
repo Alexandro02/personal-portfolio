@@ -1,5 +1,6 @@
 ---
 import { profile } from "@data/site";
+import ContactModal from "./ContactModal.astro";
 ---
 
 <section id="contact" class="py-24 px-6 max-w-2xl mx-auto text-center reveal">
@@ -8,7 +9,7 @@ import { profile } from "@data/site";
     ¿Tienes un proyecto en mente o quieres platicar? Escríbeme.
   </p>
   <div class="flex flex-wrap gap-3 justify-center">
-    <a href={`mailto:${profile.email}`} class="btn btn-primary rounded-none font-mono uppercase tracking-wide" data-i18n-es="Escríbeme" data-i18n-en="Email me">Escríbeme</a>
+    <button type="button" data-open-contact-modal class="btn btn-primary rounded-none font-mono uppercase tracking-wide" data-i18n-es="Escríbeme" data-i18n-en="Email me">Escríbeme</button>
     {profile.linkedin && (
       <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="btn btn-outline rounded-none font-mono uppercase tracking-wide">
         LinkedIn
@@ -21,3 +22,5 @@ import { profile } from "@data/site";
     )}
   </div>
 </section>
+
+<ContactModal />

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^6.0.1",
+    "@astrojs/vercel": "^11.0.10",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@tailwindcss/vite": "^4.3.2",
@@ -20,6 +21,7 @@
     "daisyui": "^5.6.16",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "resend": "^6.25.0",
     "tailwindcss": "^4.3.2",
     "three": "^0.185.1"
   },
@@ -28,5 +30,6 @@
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.185.1",
     "typescript": "^5.9.3"
-  }
+  },
+  "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621"
 }
